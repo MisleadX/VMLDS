@@ -1,0 +1,7 @@
+How To Install:
+1. Terminal Command - Composer Install (composer install)
+2. Copy File .env.example dan Rename Menjadi .env
+3. Sesuaikan Credential Database Pada File .env
+4. Terminal Command - "php artisan key:generate"
+5. Terminal Command - "php artisan migrate --seed"
+6. Terminal Command - "php artisan serve"
