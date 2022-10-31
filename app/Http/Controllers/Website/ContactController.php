@@ -55,12 +55,13 @@ class ContactController extends WebController
         });
 
         $subject = $contact->subject;
+        $recipient = $settings['contact-email'] ?? 'contact@vmldigitalsolution.com';
 
         Mail::send('mail.forgot', [
             'contact' => $contact,
             'email' => $contact->email,
         ], function ($m) use ($contact, $subject, $settings) {
-            $m->to($settings['contact-email'], 'Admin')->subject($subject);
+            $m->to($recipient, 'Admin')->subject($subject);
         });
 
         session()->flash('message', __('general.success_send_', ['field' => __('general.email')]));
