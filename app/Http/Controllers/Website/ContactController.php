@@ -60,7 +60,7 @@ class ContactController extends WebController
         Mail::send('mail.forgot', [
             'contact' => $contact,
             'email' => $contact->email,
-        ], function ($m) use ($contact, $subject, $settings) {
+        ], function ($m) use ($contact, $subject, $settings, $recipient) {
             $m->to($recipient, 'Admin')->subject($subject);
         });
 
