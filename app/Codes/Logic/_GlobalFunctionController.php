@@ -134,9 +134,9 @@ class _GlobalFunctionController extends Controller
                                 $setFileName = md5(strtotime('now').rand(0, 100)).'.'.$ext;
                                 $destinationPath = $setData['path'];
                                 if (in_array(strtolower($ext), ['jpg', 'jpeg', 'png', 'svg', 'gif'])) {
-//                                    if ($getData && strlen($getData->$imageKey) > 0 && is_file($destinationPath.$getData->$imageKey)) {
-//                                        unlink($destinationPath.$getData->$imageKey);
-//                                    }
+                                   if ($getData && strlen($getData->$imageKey) > 0 && is_file($destinationPath.$getData->$imageKey)) {
+                                       unlink($destinationPath.$getData->$imageKey);
+                                   }
 
                                     $setFileName = Storage::putFile($destinationPath, $image);
 //                                    $image->move($destinationPath, $setFileName);
