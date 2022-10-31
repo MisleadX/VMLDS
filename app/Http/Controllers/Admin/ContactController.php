@@ -44,7 +44,7 @@ class ContactController extends _CrudController
         ];
 
         parent::__construct(
-            $request, 'general.contact', 'contact', 'contact', 'contact',
+            $request, 'general.contact', 'contact', 'Contact', 'contact',
             $passingData
         );
 

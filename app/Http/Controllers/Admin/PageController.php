@@ -203,7 +203,7 @@ class PageController extends _CrudController
         ]);
 
         parent::__construct(
-            $request, 'general.page', 'page', 'page', 'page',
+            $request, 'general.page', 'page', 'Page', 'page',
             $passingData
         );
 
