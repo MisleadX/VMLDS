@@ -42,7 +42,7 @@ class InstallingSeeder extends Seeder
         ]);
 
         DB::table('page')->insertGetId([
-            'name' => 'Contac',
+            'name' => 'Contact',
             'key' => 'contact',
             'value' => null,
             'created_at' => Carbon::now(),
