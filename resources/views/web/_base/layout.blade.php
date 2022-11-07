@@ -87,11 +87,13 @@
 
             <div class="collapse navbar-collapse pl-lg-5" id="navbarNav">
                 <ul class="navbar-nav mx-lg-4 mb-2 mb-lg-0">
-                    @foreach ($page as $key => $pages)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route("$key") }}">{{ $pages['name'] }}</a>
-                        </li>
-                    @endforeach
+                    @if($page)
+                        @foreach ($page as $key => $pages)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route("$key") }}">{{ $pages['name'] }}</a>
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
         </div>
