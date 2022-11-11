@@ -95,7 +95,7 @@ $homepage = $page['homepage'] ?? [];
                 class="img-responsive img-fluid w-75" alt="Homepage Logo" />
         </div>
     </div>
-    <div class="about row pt-md-2 nopadding">
+    <div class="about row pt-md-2 nopadding" id="about">
         <div class="col-md-6 d-flex align-self-center justify-content-center">
             <img src="{{ isset($homepage['image_2']) ? asset($homepage['image_2']) : asset('assets/cms/images/no-img.png') }}"
                 class="img-responsive img-fluid w-75" alt="About Logo" />

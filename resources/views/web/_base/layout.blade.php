@@ -99,13 +99,15 @@
 
             <div class="collapse navbar-collapse pl-lg-5" id="navbarNav">
                 <ul class="navbar-nav mx-lg-4 mb-2 mb-lg-0">
-                    @if($page)
-                        @foreach ($page as $key => $pages)
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route("$key") }}">{{ $pages['name'] }}</a>
-                            </li>
-                        @endforeach
-                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('homepage') }}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contact') }}">CONTACT</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -143,46 +145,61 @@
             });
         </script>
         @if (session()->has('message'))
-        <?php
-        switch (session()->get('message_alert')) {
-            case 2 :
-                $type = 'success';
-                break;
-            case 3 :
-                $type = 'info';
-                break;
-            default :
-                $type = 'danger';
-                break;
-        }
-        ?>
+            <?php
+            switch (session()->get('message_alert')) {
+                case 2:
+                    $type = 'success';
+                    break;
+                case 3:
+                    $type = 'info';
+                    break;
+                default:
+                    $type = 'danger';
+                    break;
+            }
+            ?>
+            <script type="text/javascript">
+                'use strict';
+                $.notify({
+                    // options
+                    message: '{!! session()->get('message') !!}'
+                }, {
+                    // settings
+                    type: '{!! $type !!}',
+                    placement: {
+                        from: "bottom",
+                        align: "right"
+                    },
+                });
+            </script>
+        @endif
         <script type="text/javascript">
             'use strict';
-            $.notify({
-                // options
-                message: '{!! session()->get('message') !!}'
-            }, {
-                // settings
-                type: '{!! $type !!}',
-                placement: {
-                    from: "bottom",
-                    align: "right"
-                },
-            });
-        </script>
-    @endif
-    <script type="text/javascript">
-        'use strict';
 
-        function showErrorMessage(err) {
-            let textError = '';
-            if (typeof err.responseJSON !== 'undefined') {
-                if (typeof err.responseJSON.errors !== 'undefined') {
-                    $.each(err.responseJSON.errors, function (index, item) {
-                        textError = item[0];
+            function showErrorMessage(err) {
+                let textError = '';
+                if (typeof err.responseJSON !== 'undefined') {
+                    if (typeof err.responseJSON.errors !== 'undefined') {
+                        $.each(err.responseJSON.errors, function(index, item) {
+                            textError = item[0];
+                            $.notify({
+                                // options
+                                message: item[0]
+                            }, {
+                                // settings
+                                type: 'danger',
+                                placement: {
+                                    from: "bottom",
+                                    align: "right"
+                                },
+                            });
+                        });
+                    } else if (typeof err.responseJSON.message === 'string') {
+                        textError = err.responseJSON.message;
+                        $('#errorForm').html(err.responseJSON.message);
                         $.notify({
                             // options
-                            message: item[0]
+                            message: err.responseJSON.message
                         }, {
                             // settings
                             type: 'danger',
@@ -191,41 +208,25 @@
                                 align: "right"
                             },
                         });
-                    });
-                } else if (typeof err.responseJSON.message === 'string') {
-                    textError = err.responseJSON.message;
-                    $('#errorForm').html(err.responseJSON.message);
-                    $.notify({
-                        // options
-                        message: err.responseJSON.message
-                    }, {
-                        // settings
-                        type: 'danger',
-                        placement: {
-                            from: "bottom",
-                            align: "right"
-                        },
-                    });
-                } else if (typeof err.responseJSON.message === 'object') {
-                    textError = err.responseJSON.message[0];
-                    $.notify({
-                        // options
-                        message: err.responseJSON.message[0]
-                    }, {
-                        // settings
-                        type: 'danger',
-                        placement: {
-                            from: "bottom",
-                            align: "right"
-                        },
-                    });
+                    } else if (typeof err.responseJSON.message === 'object') {
+                        textError = err.responseJSON.message[0];
+                        $.notify({
+                            // options
+                            message: err.responseJSON.message[0]
+                        }, {
+                            // settings
+                            type: 'danger',
+                            placement: {
+                                from: "bottom",
+                                align: "right"
+                            },
+                        });
+                    }
                 }
+
+                return textError;
             }
-
-            return textError;
-        }
-
-    </script>
+        </script>
     @show
 </body>
 
