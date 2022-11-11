@@ -15,7 +15,7 @@ $homepage = $page['homepage'] ?? [];
         }
 
         .homepage-desc {
-            color: #674848;
+            color: rgba(103, 72, 72, 0.8);
             text-align: justify;
             text-justify: inter-word;
         }
@@ -31,6 +31,10 @@ $homepage = $page['homepage'] ?? [];
             justify-content: start !important;
         }
 
+        .carousel-item {
+            color: rgba(103, 72, 72, 0.8);
+        }
+
         .carousel-indicators li {
             width: 1.5rem !important;
             height: 1.5rem !important;
@@ -44,6 +48,7 @@ $homepage = $page['homepage'] ?? [];
 
         .title {
             color: #788BFF;
+            font-family: 'Aquino';
         }
 
         .carousel-item {
@@ -57,7 +62,7 @@ $homepage = $page['homepage'] ?? [];
     <div class="homepage row">
         <div class="col-md-6 align-self-center">
             <div class="homepage-details">
-                <h1 class="text-bold title">
+                <h1 class="title">
                     {{ $homepage['title'] ?? '' }}
                 </h1>
                 <div class="homepage-desc">
@@ -79,15 +84,15 @@ $homepage = $page['homepage'] ?? [];
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <h1 class="title text-bold">{{ $homepage['title_2'] ?? "About Us" }}</h1>
+                        <h1 class="title">{{ $homepage['title_2'] ?? "About Us" }}</h1>
                         {!! $homepage['content_2'] ?? '' !!}
                     </div>
                     <div class="carousel-item">
-                        <h1 class="title text-bold">{{ $homepage['title_3'] ?? "Our Vision" }}</h1>
+                        <h1 class="title">{{ $homepage['title_3'] ?? "Our Vision" }}</h1>
                         {!! $homepage['content_3'] ?? '' !!}
                     </div>
                     <div class="carousel-item">
-                        <h1 class="title text-bold">{{ $homepage['title_4'] ?? "Our Mission" }}</h1>
+                        <h1 class="title">{{ $homepage['title_4'] ?? "Our Mission" }}</h1>
                         {!! $homepage['content_4'] ?? '' !!}
                     </div>
                 </div>
@@ -99,17 +104,6 @@ $homepage = $page['homepage'] ?? [];
             </div>
         </div>
     </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
 @stop
 
 @section('script-bottom')

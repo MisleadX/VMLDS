@@ -23,41 +23,45 @@
         .contact {
             padding: 4rem 1rem 0 1rem;
         }
+
+        .title {
+            font-family: 'Aquino';
+        }
     </style>
 @stop
 
 <?php
-$homepage = $page['contact'] ?? [];
+$contact = $page['contact'] ?? [];
 ?>
 
 @section('content')
     <div class="contact row">
         <div class="col-md-6">
             <div class="card-body">
-                <h1 class="text-center text-bold">Contact Us</h1>
+                <h1 class="text-center title">{{ $contact['title'] ?? "Contact Us" }}</h1>
                 {{ Form::open(['route' => ['contact'], 'files' => true, 'id'=>'form', 'role' => 'form'])  }}
                     @captcha
                     <div class="form-outline mb-3">
                         <label for="name">{{ __("general.name") }} <span class="text-red">*</span></label>
-                        {{ Form::text("name", old("name"), ['id' => 'name', 'class' => $errors->has('name') ? 'form-control is-invalid' : 'form-control', 'required' => true]) }}
+                        {{ Form::text("name", old("name"), ['id' => 'name', 'class' => $errors->has('name') ? 'form-control is-invalid' : 'form-control', 'required' => true, 'placeholder' => 'Your name']) }}
                         @if($errors->has("name")) <div class="invalid-feedback">{{ $errors->first("name") }}</div> @endif
                     </div>
 
                     <div class="form-outline mb-3">
                         <label for="email">{{ __("general.email") }} <span class="text-red">*</span></label>
-                        {{ Form::email("email", old("email"), ['id' => 'email', 'class' => $errors->has('email') ? 'form-control is-invalid' : 'form-control', 'required' => true]) }}
+                        {{ Form::email("email", old("email"), ['id' => 'email', 'class' => $errors->has('email') ? 'form-control is-invalid' : 'form-control', 'required' => true, 'placeholder' => 'Your email']) }}
                         @if($errors->has("email")) <div class="invalid-feedback">{{ $errors->first("email") }}</div> @endif
                     </div>
 
                     <div class="form-outline mb-3">
                         <label for="phone">{{ __("general.phone") }}</label>
-                        {{ Form::text("phone", old("phone"), ['id' => 'phone', 'class' => $errors->has('phone') ? 'form-control is-invalid' : 'form-control', 'required' => false]) }}
+                        {{ Form::text("phone", old("phone"), ['id' => 'phone', 'class' => $errors->has('phone') ? 'form-control is-invalid' : 'form-control', 'required' => false, 'placeholder' => 'Your phone number']) }}
                         @if($errors->has("phone")) <div class="invalid-feedback">{{ $errors->first("phone") }}</div> @endif
                     </div>
 
                     <div class="form-outline mb-3">
                         <label for="subject">{{ __("general.subject") }} <span class="text-red">*</span></label>
-                        {{ Form::text("subject", old("subject"), ['id' => 'subject', 'class' => $errors->has('subject') ? 'form-control is-invalid' : 'form-control', 'required' => true]) }}
+                        {{ Form::text("subject", old("subject"), ['id' => 'subject', 'class' => $errors->has('subject') ? 'form-control is-invalid' : 'form-control', 'required' => true, 'placeholder' => 'Message subject']) }}
                         @if($errors->has("subject")) <div class="invalid-feedback">{{ $errors->first("subject") }}</div> @endif
                     </div>
                     <div class="form-outline mb-3">
@@ -74,7 +78,7 @@ $homepage = $page['contact'] ?? [];
             </div>
         </div>
         <div class="col-md-6 d-flex align-self-center justify-content-center">
-            <img src="{{ isset($homepage['image']) ? asset($homepage['image']) : asset('assets/cms/images/no-img.png') }}"
+            <img src="{{ isset($contact['image']) ? asset($contact['image']) : asset('assets/cms/images/no-img.png') }}"
                 class="img-responsive img-fluid w-75" alt="Contact Logo" />
         </div>
     </div>

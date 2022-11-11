@@ -12,13 +12,20 @@
 
     @section('css')
         <link rel="stylesheet" href="{{ asset('/assets/cms/css/app.css') }}">
-        <style>
+        <style type="text/css">
+            @font-face {
+                font-family: 'Aquino';
+                font-style: normal;
+                font-weight: normal;
+                src: url('{{ asset('assets/web/fonts/Aquino-Demo.woff') }}');
+            }
+
             body {
                 position: relative;
                 min-height: 100vh;
-                font-family: 'Aquino';
                 max-width: 1280px;
                 margin: 0 auto !important;
+                font-family: 'sans-serif';
             }
 
             footer {
@@ -29,6 +36,7 @@
 
             nav {
                 font-size: 24px;
+                font-family: 'Aquino';
             }
 
             .navbar-brand {
