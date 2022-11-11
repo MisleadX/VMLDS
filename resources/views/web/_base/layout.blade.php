@@ -78,6 +78,10 @@
             .footer {
                 background: #788BFF;
             }
+
+            .content-section {
+                padding-bottom: 5rem;
+            }
         </style>
     @show
     @section('script-top')

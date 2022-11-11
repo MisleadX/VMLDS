@@ -10,8 +10,11 @@ $homepage = $page['homepage'] ?? [];
     @parent
     <style>
         .homepage {
-            height: 500px;
-            background: radial-gradient(circle at right center, #788BFF 0%, #788BFF 50%, #788BFF 50%, transparent 0, transparent 0);
+            padding-top: 4.5rem;
+        }
+
+        .homepage-img {
+            background: #788BFF;
         }
 
         .homepage-desc {
@@ -35,6 +38,10 @@ $homepage = $page['homepage'] ?? [];
             color: rgba(103, 72, 72, 0.8);
         }
 
+        .carousel-item .title {
+            line-height: 2;
+        }
+
         .carousel-indicators li {
             width: 1.5rem !important;
             height: 1.5rem !important;
@@ -53,14 +60,27 @@ $homepage = $page['homepage'] ?? [];
 
         .carousel-item {
             height: 100%;
-            min-height: 250px;
+            min-height: 300px;
         }
+
+        @media(min-width: 768px) {
+            .homepage {
+                background: radial-gradient(circle at right center, #788BFF 0%, #788BFF 50%, #788BFF 50%, transparent 0, transparent 0);
+            }
+            .homepage-img {
+                background: none;
+            }
+            .carousel-item {
+                min-height: 275px;
+            }
+        }
+
     </style>
 @stop
 
 @section('content')
     <div class="homepage row">
-        <div class="col-md-6 align-self-center">
+        <div class="col-12 col-md-6 align-self-center">
             <div class="homepage-details">
                 <h1 class="title">
                     {{ $homepage['title'] ?? '' }}
@@ -70,7 +90,7 @@ $homepage = $page['homepage'] ?? [];
                 </div>
             </div>
         </div>
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center homepage-img">
             <img src="{{ isset($homepage['image']) ? asset($homepage['image']) : asset('assets/cms/images/no-img.png') }}"
                 class="img-responsive img-fluid w-75" alt="Homepage Logo" />
         </div>

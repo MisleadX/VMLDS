@@ -36,7 +36,7 @@ $contact = $page['contact'] ?? [];
 
 @section('content')
     <div class="contact row">
-        <div class="col-md-6">
+        <div class="col-12 col-md-6">
             <div class="card-body">
                 <h1 class="text-center title">{{ $contact['title'] ?? "Contact Us" }}</h1>
                 {{ Form::open(['route' => ['contact'], 'files' => true, 'id'=>'form', 'role' => 'form'])  }}
@@ -77,7 +77,7 @@ $contact = $page['contact'] ?? [];
                 {{ Form::close() }}
             </div>
         </div>
-        <div class="col-md-6 d-flex align-self-center justify-content-center">
+        <div class="col-12 col-md-6 d-flex align-self-center justify-content-center">
             <img src="{{ isset($contact['image']) ? asset($contact['image']) : asset('assets/cms/images/no-img.png') }}"
                 class="img-responsive img-fluid w-75" alt="Contact Logo" />
         </div>
